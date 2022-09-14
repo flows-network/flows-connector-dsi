@@ -6,103 +6,103 @@ use serde_json::Value;
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Repository {
-    name: String,
-    full_name: String,
-    private: bool,
-    owner: User,
-    html_url: String,
-    description: Option<String>,
-    fork: bool,
-    created_at: String,
-    updated_at: String,
-    pushed_at: String,
-    git_url: String,
-    ssh_url: String,
-    clone_url: String,
-    svn_url: String,
-    homepage: Option<String>,
-    stargazers_count: u32,
-    watchers_count: u32,
-    language: Option<String>,
-    has_issues: bool,
-    has_projects: bool,
-    has_downloads: bool,
-    has_wiki: bool,
-    has_pages: bool,
-    forks_count: u32,
-    mirror_url: Option<String>,
-    archived: bool,
-    disabled: bool,
-    open_issues_count: u32,
-    license: Option<String>,
-    forks: u32,
-    open_issues: u32,
-    watchers: u32,
-    default_branch: String,
+    pub name: String,
+    pub full_name: String,
+    pub private: bool,
+    pub owner: User,
+    pub html_url: String,
+    pub description: Option<String>,
+    pub fork: bool,
+    pub created_at: String,
+    pub updated_at: String,
+    pub pushed_at: String,
+    pub git_url: String,
+    pub ssh_url: String,
+    pub clone_url: String,
+    pub svn_url: String,
+    pub homepage: Option<String>,
+    pub stargazers_count: u32,
+    pub watchers_count: u32,
+    pub language: Option<String>,
+    pub has_issues: bool,
+    pub has_projects: bool,
+    pub has_downloads: bool,
+    pub has_wiki: bool,
+    pub has_pages: bool,
+    pub forks_count: u32,
+    pub mirror_url: Option<String>,
+    pub archived: bool,
+    pub disabled: bool,
+    pub open_issues_count: u32,
+    pub license: Option<String>,
+    pub forks: u32,
+    pub open_issues: u32,
+    pub watchers: u32,
+    pub default_branch: String,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Organization {
-    login: String,
-    avatar_url: String,
-    description: Option<String>,
+    pub login: String,
+    pub avatar_url: String,
+    pub description: Option<String>,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct User {
-    login: String,
-    avatar_url: String,
-    html_url: String,
-    r#type: String,
-    site_admin: bool,
+    pub login: String,
+    pub avatar_url: String,
+    pub html_url: String,
+    pub r#type: String,
+    pub site_admin: bool,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct DiscussionCategory {
-    name: String,
-    description: String,
-    emoji: Option<String>,
-    created_at: String,
-    updated_at: String,
-    slug: Option<String>,
-    is_answerable: bool,
+    pub name: String,
+    pub description: String,
+    pub emoji: Option<String>,
+    pub created_at: String,
+    pub updated_at: String,
+    pub slug: Option<String>,
+    pub is_answerable: bool,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Comment {
-    html_url: String,
-    user: User,
-    position: Option<String>,
-    path: Option<String>,
-    created_at: String,
-    updated_at: String,
-    author_association: String,
-    body: String,
+    pub html_url: String,
+    pub user: User,
+    pub position: Option<String>,
+    pub path: Option<String>,
+    pub created_at: String,
+    pub updated_at: String,
+    pub author_association: String,
+    pub body: String,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Discussion {
-    category: DiscussionCategory,
-    answer_html_url: Option<String>,
-    answer_chosen_at: Option<String>,
-    answer_chosen_by: Option<String>,
-    html_url: String,
-    user: User,
-    number: u32,
-    title: String,
-    state: String,
-    locked: bool,
-    comments: u32,
-    created_at: String,
-    updated_at: String,
-    author_association: String,
-    active_lock_reason: Option<String>,
-    body: String,
+    pub category: DiscussionCategory,
+    pub answer_html_url: Option<String>,
+    pub answer_chosen_at: Option<String>,
+    pub answer_chosen_by: Option<String>,
+    pub html_url: String,
+    pub user: User,
+    pub number: u32,
+    pub title: String,
+    pub state: String,
+    pub locked: bool,
+    pub comments: u32,
+    pub created_at: String,
+    pub updated_at: String,
+    pub author_association: String,
+    pub active_lock_reason: Option<String>,
+    pub body: String,
 }
 
 type Fork = Repository;
@@ -110,182 +110,182 @@ type Fork = Repository;
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Label {
-    name: String,
-    color: String,
-    default: bool,
+    pub name: String,
+    pub color: String,
+    pub default: bool,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Issue {
-    html_url: String,
-    number: u32,
-    title: String,
-    user: User,
-    labels: Vec<Label>,
-    state: String,
-    locked: bool,
-    assignees: Vec<User>,
-    comments: u32,
-    created_at: String,
-    updated_at: String,
-    closed_at: Option<String>,
-    author_association: String,
-    body: String,
+    pub html_url: String,
+    pub number: u32,
+    pub title: String,
+    pub user: User,
+    pub labels: Vec<Label>,
+    pub state: String,
+    pub locked: bool,
+    pub assignees: Vec<User>,
+    pub comments: u32,
+    pub created_at: String,
+    pub updated_at: String,
+    pub closed_at: Option<String>,
+    pub author_association: String,
+    pub body: String,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Plan {
-    name: String,
-    description: String,
-    monthly_price_in_cents: u32,
-    yearly_price_in_cents: u32,
-    price_model: String,
-    has_free_trial: bool,
-    unit_name: String,
-    bullets: Vec<String>,
+    pub name: String,
+    pub description: String,
+    pub monthly_price_in_cents: u32,
+    pub yearly_price_in_cents: u32,
+    pub price_model: String,
+    pub has_free_trial: bool,
+    pub unit_name: String,
+    pub bullets: Vec<String>,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct MarketplacePurchase {
-    billing_cycle: String,
-    unit_count: u32,
-    on_free_trial: bool,
-    free_trial_ends_on: Option<String>,
-    next_billing_date: String,
-    plan: Plan,
+    pub billing_cycle: String,
+    pub unit_count: u32,
+    pub on_free_trial: bool,
+    pub free_trial_ends_on: Option<String>,
+    pub next_billing_date: String,
+    pub plan: Plan,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Commit {
-    label: String,
-    r#ref: String,
-    sha: String,
-    user: User,
-    repo: Repository
+    pub label: String,
+    pub r#ref: String,
+    pub sha: String,
+    pub user: User,
+    pub repo: Repository
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct PullRequest {
-    html_url: String,
-    diff_url: String,
-    patch_url: String,
-    number: u32,
-    state: String,
-    locked: bool,
-    title: String,
-    user: User,
-    body: String,
-    created_at: String,
-    updated_at: String,
-    closed_at: Option<String>,
-    merged_at: Option<String>,
-    merge_commit_sha: Option<String>,
-    assignees: Vec<User>,
-    requested_reviewers: Vec<User>,
-    labels: Vec<Label>,
-    head: Commit,
-    base: Commit,
-    author_association: String,
-    draft: Option<bool>,
-    merged: Option<bool>,
-    mergeable: Option<bool>,
-    mergeable_state: Option<String>,
-    merged_by: Option<User>,
-    comments: Option<u32>,
-    review_comments: Option<u32>,
-    maintainer_can_modify: Option<bool>,
-    commits: Option<u32>,
-    additions: Option<u32>,
-    deletions: Option<u32>,
-    changed_files: Option<u32>,
+    pub html_url: String,
+    pub diff_url: String,
+    pub patch_url: String,
+    pub number: u32,
+    pub state: String,
+    pub locked: bool,
+    pub title: String,
+    pub user: User,
+    pub body: String,
+    pub created_at: String,
+    pub updated_at: String,
+    pub closed_at: Option<String>,
+    pub merged_at: Option<String>,
+    pub merge_commit_sha: Option<String>,
+    pub assignees: Vec<User>,
+    pub requested_reviewers: Vec<User>,
+    pub labels: Vec<Label>,
+    pub head: Commit,
+    pub base: Commit,
+    pub author_association: String,
+    pub draft: Option<bool>,
+    pub merged: Option<bool>,
+    pub mergeable: Option<bool>,
+    pub mergeable_state: Option<String>,
+    pub merged_by: Option<User>,
+    pub comments: Option<u32>,
+    pub review_comments: Option<u32>,
+    pub maintainer_can_modify: Option<bool>,
+    pub commits: Option<u32>,
+    pub additions: Option<u32>,
+    pub deletions: Option<u32>,
+    pub changed_files: Option<u32>,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Review {
-    user: User,
-    body: Option<String>,
-    commit_id: String,
-    submitted_at: String,
-    state: String,
-    html_url: String,
-    author_association: String,
+    pub user: User,
+    pub body: Option<String>,
+    pub commit_id: String,
+    pub submitted_at: String,
+    pub state: String,
+    pub html_url: String,
+    pub author_association: String,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct ReleaseAsset {
-    browser_download_url: String,
-    name: String,
-    label: Option<String>,
-    state: String,
-    content_type: String,
-    size: i64,
-    download_count: i64,
-    created_at: String,
-    updated_at: String,
-    uploader: User,
+    pub browser_download_url: String,
+    pub name: String,
+    pub label: Option<String>,
+    pub state: String,
+    pub content_type: String,
+    pub size: i64,
+    pub download_count: i64,
+    pub created_at: String,
+    pub updated_at: String,
+    pub uploader: User,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Release {
-    html_url: String,
-    tag_name: String,
-    target_commitish: String,
-    name: Option<String>,
-    draft: bool,
-    author: User,
-    assets: Vec<ReleaseAsset>,
-    prerelease: bool,
-    created_at: String,
-    published_at: String,
-    body: Option<String>,
+    pub html_url: String,
+    pub tag_name: String,
+    pub target_commitish: String,
+    pub name: Option<String>,
+    pub draft: bool,
+    pub author: User,
+    pub assets: Vec<ReleaseAsset>,
+    pub prerelease: bool,
+    pub created_at: String,
+    pub published_at: String,
+    pub body: Option<String>,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct WorkflowStep {
-    name: String,
-    status: String,
-    conclusion: Option<String>,
-    number: u32,
-    started_at: String,
-    completed_at: Option<String>,
+    pub name: String,
+    pub status: String,
+    pub conclusion: Option<String>,
+    pub number: u32,
+    pub started_at: String,
+    pub completed_at: Option<String>,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct WorkflowJob {
-    html_url: String,
-    status: String,
-    conclusion: Option<String>,
-    started_at: String,
-    completed_at: Option<String>,
-    name: String,
-    steps: Vec<WorkflowStep>,
-    labels: Vec<String>,
-    runner_id: u32,
-    runner_name: String,
-    runner_group_id: u32,
-    runner_group_name: String,
+    pub html_url: String,
+    pub status: String,
+    pub conclusion: Option<String>,
+    pub started_at: String,
+    pub completed_at: Option<String>,
+    pub name: String,
+    pub steps: Vec<WorkflowStep>,
+    pub labels: Vec<String>,
+    pub runner_id: u32,
+    pub runner_name: String,
+    pub runner_group_id: u32,
+    pub runner_group_name: String,
 }
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct InboundData {
-    action: Option<String>,
-    sender: User,
-    repository: Option<Repository>,
-    organization: Option<Organization>,
+    pub action: Option<String>,
+    pub sender: User,
+    pub repository: Option<Repository>,
+    pub organization: Option<Organization>,
 
     #[serde(flatten)]
-    extra: HashMap<String, Value>,
+    pub extra: HashMap<String, Value>,
 }
 
 impl InboundData {
