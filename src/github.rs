@@ -118,12 +118,14 @@ pub struct Label {
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Issue {
+    pub active_lock_reason: Option<String>,
     pub html_url: String,
     pub number: u32,
     pub title: String,
     pub user: User,
     pub labels: Vec<Label>,
     pub state: String,
+    pub state_reason: Option<String>,
     pub locked: bool,
     pub assignees: Vec<User>,
     pub comments: u32,
@@ -131,7 +133,7 @@ pub struct Issue {
     pub updated_at: String,
     pub closed_at: Option<String>,
     pub author_association: String,
-    pub body: String,
+    pub body: Option<String>,
 }
 
 #[allow(dead_code)]
