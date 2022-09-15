@@ -53,6 +53,7 @@ pub struct Organization {
 #[derive(Deserialize, Debug)]
 pub struct User {
     pub login: String,
+    pub email: Option<String>,
     pub avatar_url: String,
     pub html_url: String,
     pub r#type: String,
