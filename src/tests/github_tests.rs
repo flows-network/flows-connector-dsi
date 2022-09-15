@@ -1,5 +1,7 @@
 #[cfg(test)]
 mod github_tests {
+    use serde_json::{json, Value};
+
     use crate::github::*;
 
     #[test]
@@ -66,5 +68,24 @@ mod github_tests {
         let s = include_str!("github_workflow_job.json").to_string();
 
         println!("{:#?}", inbound(s).unwrap().get_workflow_job().unwrap());
+    }
+
+    #[test]
+    fn outbound_test() {
+        let d = outbound::create_issue("issue title")
+            .labels(vec!["test"])
+            .milestone(json!(1))
+            .assignees(vec!["ho-229"])
+            .body("message")
+            .build()
+            .unwrap();
+        
+        assert_eq!(serde_json::from_str::<Value>(&d).unwrap(), json!({
+            "title": "issue title",
+            "labels": ["test"],
+            "milestone": 1,
+            "assignees": ["ho-229"],
+            "body": "message"
+        }));
     }
 }

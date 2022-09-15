@@ -167,7 +167,7 @@ pub struct Commit {
     pub r#ref: String,
     pub sha: String,
     pub user: User,
-    pub repo: Repository
+    pub repo: Repository,
 }
 
 #[allow(dead_code)]
@@ -309,7 +309,9 @@ impl InboundData {
     }
 
     pub fn get_repository(&self) -> Result<&Repository, String> {
-        self.repository.as_ref().ok_or("Missing repository".to_string())
+        self.repository
+            .as_ref()
+            .ok_or("Missing repository".to_string())
     }
 
     #[inline]
@@ -319,7 +321,9 @@ impl InboundData {
 
     #[inline]
     pub fn get_discussion(&self) -> Result<&Discussion, String> {
-        self.discussion.as_ref().ok_or("Missing discussion".to_string())
+        self.discussion
+            .as_ref()
+            .ok_or("Missing discussion".to_string())
     }
 
     #[inline]
@@ -339,12 +343,16 @@ impl InboundData {
 
     #[inline]
     pub fn get_marketplace_purchase(&self) -> Result<&MarketplacePurchase, String> {
-        self.marketplace_purchase.as_ref().ok_or("Missing marketplace_purchase".to_string())
+        self.marketplace_purchase
+            .as_ref()
+            .ok_or("Missing marketplace_purchase".to_string())
     }
 
     #[inline]
     pub fn get_pull_request(&self) -> Result<&PullRequest, String> {
-        self.pull_request.as_ref().ok_or("Missing pull_request".to_string())
+        self.pull_request
+            .as_ref()
+            .ok_or("Missing pull_request".to_string())
     }
 
     #[inline]
@@ -359,12 +367,16 @@ impl InboundData {
 
     #[inline]
     pub fn get_starred_at(&self) -> Result<&String, String> {
-        self.starred_at.as_ref().ok_or("Missing starred_at".to_string())
+        self.starred_at
+            .as_ref()
+            .ok_or("Missing starred_at".to_string())
     }
 
     #[inline]
     pub fn get_workflow_job(&self) -> Result<&WorkflowJob, String> {
-        self.workflow_job.as_ref().ok_or("Missing workflow_job".to_string())
+        self.workflow_job
+            .as_ref()
+            .ok_or("Missing workflow_job".to_string())
     }
 }
 
@@ -373,55 +385,57 @@ pub fn inbound(s: String) -> Result<InboundData, String> {
 }
 
 pub mod outbound {
+    use std::collections::HashMap;
+
+    use serde::Serialize;
     use serde_json::{json, Value};
 
-    pub fn create_issue(
-        title: String,
-        body: String,
-        milestone: Value,       // null or string or integer
-        labels: Vec<String>,
-        assignees: Vec<String>,
-    ) -> String {
-        json!({
-            "title": title,
-            "body": body,
-            "milestone": milestone,
-            "labels": labels,
-            "assignees": assignees,
-        })
-        .to_string()
+    #[derive(Serialize)]
+    pub struct OutboundData<'a> {
+        #[serde(flatten)]
+        inner: HashMap<&'a str, Value>,
     }
 
-    pub fn create_comment(
-        issue_number: u32,
-        body: String,
-    ) -> String {
-        json!({
-            "issue_number": issue_number,
-            "body": body,
-        })
-        .to_string()
+    impl<'a> OutboundData<'a> {
+        pub fn body<S: ToString + Serialize>(mut self, body: S) -> OutboundData<'a> {
+            self.inner.insert("body", json!(body));
+            self
+        }
+
+        pub fn milestone(mut self, milestone: Value) -> OutboundData<'a> {
+            self.inner.insert("milestone", milestone);
+            self
+        }
+
+        pub fn labels<S: ToString + Serialize>(mut self, labels: Vec<S>) -> OutboundData<'a> {
+            self.inner.insert("labels", json!(labels));
+            self
+        }
+
+        pub fn assignees<S: ToString + Serialize>(mut self, assignees: Vec<S>) -> OutboundData<'a> {
+            self.inner.insert("assignees", json!(assignees));
+            self
+        }
+
+        pub fn build(self) -> Result<String, String> {
+            serde_json::to_string(&self)
+                .map_err(|e| format!("OutboundData build failed: {}", e.to_string()))
+        }
     }
 
-    pub fn add_labels(
-        issue_number: u32,
-        labels: Vec<String>,
-    ) -> String {
-        json!({
-            "issue_number": issue_number,
-            "labels": labels,
-        })
-        .to_string()
+    pub fn create_issue<'a, S: ToString + Serialize>(title: S) -> OutboundData<'a> {
+        OutboundData {
+            inner: [("title", json!(title))]
+                .into_iter()
+                .collect::<HashMap<&str, Value>>(),
+        }
     }
 
-    pub fn add_assignees(
-        issue_number: u32,
-        assignees: Vec<String>,
-    ) -> String {
-        json!({
-            "issue_number": issue_number,
-            "assignees": assignees,
-        })
-        .to_string()
+    pub fn modify_issue<'a>(issue_number: u32) -> OutboundData<'a> {
+        OutboundData {
+            inner: [("issue_number", json!(issue_number))]
+                .into_iter()
+                .collect::<HashMap<&str, Value>>(),
+        }
     }
 }
