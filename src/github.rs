@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use serde::{de::DeserializeOwned, Deserialize};
+use serde::Deserialize;
 use serde_json::Value;
 
 #[allow(dead_code)]
@@ -281,79 +281,90 @@ pub struct WorkflowJob {
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct InboundData {
-    pub action: Option<String>,
     pub sender: User,
+
+    pub action: Option<String>,
     pub repository: Option<Repository>,
     pub organization: Option<Organization>,
+    pub comment: Option<Comment>,
+    pub discussion: Option<Discussion>,
+    pub forkee: Option<Fork>,
+    pub issue: Option<Issue>,
+    pub label: Option<Label>,
+    pub marketplace_purchase: Option<MarketplacePurchase>,
+    pub pull_request: Option<PullRequest>,
+    pub review: Option<Review>,
+    pub release: Option<Release>,
+    pub starred_at: Option<String>,
+    pub workflow_job: Option<WorkflowJob>,
 
     #[serde(flatten)]
     pub extra: HashMap<String, Value>,
 }
 
 impl InboundData {
-    pub fn get_from_extra<T: DeserializeOwned>(&self, name: &str) -> Result<T, String> {
-        serde_json::from_value(
-            self.extra
-                .get(name)
-                .ok_or(format!("Missing {}.", name))?
-                .clone(),
-        )
-        .map_err(|e| e.to_string())
+    #[inline]
+    pub fn get_action(&self) -> Result<&String, String> {
+        self.action.as_ref().ok_or("Missing action".to_string())
+    }
+
+    pub fn get_repository(&self) -> Result<&Repository, String> {
+        self.repository.as_ref().ok_or("Missing repository".to_string())
     }
 
     #[inline]
-    pub fn get_comment(&self) -> Result<Comment, String> {
-        self.get_from_extra("comment")
+    pub fn get_comment(&self) -> Result<&Comment, String> {
+        self.comment.as_ref().ok_or("Missing comment".to_string())
     }
 
     #[inline]
-    pub fn get_discussion(&self) -> Result<Discussion, String> {
-        self.get_from_extra("discussion")
+    pub fn get_discussion(&self) -> Result<&Discussion, String> {
+        self.discussion.as_ref().ok_or("Missing discussion".to_string())
     }
 
     #[inline]
-    pub fn get_fork(&self) -> Result<Fork, String> {
-        self.get_from_extra("forkee")
+    pub fn get_fork(&self) -> Result<&Fork, String> {
+        self.forkee.as_ref().ok_or("Missing forkee".to_string())
     }
 
     #[inline]
-    pub fn get_issue(&self) -> Result<Issue, String> {
-        self.get_from_extra("issue")
+    pub fn get_issue(&self) -> Result<&Issue, String> {
+        self.issue.as_ref().ok_or("Missing issue".to_string())
     }
 
     #[inline]
-    pub fn get_label(&self) -> Result<Label, String> {
-        self.get_from_extra("label")
+    pub fn get_label(&self) -> Result<&Label, String> {
+        self.label.as_ref().ok_or("Missing label".to_string())
     }
 
     #[inline]
-    pub fn get_marketplace_purchase(&self) -> Result<MarketplacePurchase, String> {
-        self.get_from_extra("marketplace_purchase")
+    pub fn get_marketplace_purchase(&self) -> Result<&MarketplacePurchase, String> {
+        self.marketplace_purchase.as_ref().ok_or("Missing marketplace_purchase".to_string())
     }
 
     #[inline]
-    pub fn get_pull_request(&self) -> Result<PullRequest, String> {
-        self.get_from_extra("pull_request")
+    pub fn get_pull_request(&self) -> Result<&PullRequest, String> {
+        self.pull_request.as_ref().ok_or("Missing pull_request".to_string())
     }
 
     #[inline]
-    pub fn get_review(&self) -> Result<Review, String> {
-        self.get_from_extra("review")
+    pub fn get_review(&self) -> Result<&Review, String> {
+        self.review.as_ref().ok_or("Missing review".to_string())
     }
 
     #[inline]
-    pub fn get_release(&self) -> Result<Release, String> {
-        self.get_from_extra("release")
+    pub fn get_release(&self) -> Result<&Release, String> {
+        self.release.as_ref().ok_or("Missing release".to_string())
     }
 
     #[inline]
-    pub fn get_starred_at(&self) -> Result<String, String> {
-        self.get_from_extra("starred_at")
+    pub fn get_starred_at(&self) -> Result<&String, String> {
+        self.starred_at.as_ref().ok_or("Missing starred_at".to_string())
     }
 
     #[inline]
-    pub fn get_workflow_job(&self) -> Result<WorkflowJob, String> {
-        self.get_from_extra("workflow_job")
+    pub fn get_workflow_job(&self) -> Result<&WorkflowJob, String> {
+        self.workflow_job.as_ref().ok_or("Missing workflow_job".to_string())
     }
 }
 
