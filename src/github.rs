@@ -181,7 +181,7 @@ pub struct PullRequest {
     pub locked: bool,
     pub title: String,
     pub user: User,
-    pub body: String,
+    pub body: Option<String>,
     pub created_at: String,
     pub updated_at: String,
     pub closed_at: Option<String>,
@@ -381,7 +381,9 @@ impl InboundData {
 }
 
 pub fn inbound(s: String) -> Result<InboundData, String> {
-    serde_json::from_str::<InboundData>(&s).map_err(|e| e.to_string())
+    serde_json::from_str::<InboundData>(&s)
+        .map_err(|e| 
+            format!("Parsing GitHub Webhook payload failed: {}", e.to_string()))
 }
 
 pub mod outbound {
