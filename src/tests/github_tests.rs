@@ -16,7 +16,11 @@ mod github_tests {
         let s = include_str!("github_discussion_comment.json").to_string();
         let d = inbound(s).unwrap();
 
-        println!("{:#?}\n{:#?}", d.get_comment().unwrap(), d.get_discussion().unwrap());
+        println!(
+            "{:#?}\n{:#?}",
+            d.get_comment().unwrap(),
+            d.get_discussion().unwrap()
+        );
     }
 
     #[test]
@@ -31,7 +35,11 @@ mod github_tests {
         let s = include_str!("github_issue_comment.json").to_string();
         let d = inbound(s).unwrap();
 
-        println!("{:#?}\n{:#?}", d.get_comment().unwrap(), d.get_issue().unwrap());
+        println!(
+            "{:#?}\n{:#?}",
+            d.get_comment().unwrap(),
+            d.get_issue().unwrap()
+        );
     }
 
     #[test]
@@ -45,7 +53,10 @@ mod github_tests {
     fn marketplace_purchase_test() {
         let s = include_str!("github_marketplace_purchase.json").to_string();
 
-        println!("{:#?}", inbound(s).unwrap().get_marketplace_purchase().unwrap());
+        println!(
+            "{:#?}",
+            inbound(s).unwrap().get_marketplace_purchase().unwrap()
+        );
     }
 
     #[test]
@@ -53,7 +64,11 @@ mod github_tests {
         let s = include_str!("github_pull_request_review.json").to_string();
         let d = inbound(s).unwrap();
 
-        println!("{:#?}\n{:#?}", d.get_review().unwrap(), d.get_pull_request().unwrap());
+        println!(
+            "{:#?}\n{:#?}",
+            d.get_review().unwrap(),
+            d.get_pull_request().unwrap()
+        );
     }
 
     #[test]
@@ -71,6 +86,18 @@ mod github_tests {
     }
 
     #[test]
+    fn push_test() {
+        let s = include_str!("github_push.json").to_string();
+        let d = inbound(s).unwrap();
+
+        println!(
+            "{:#?}\n{:#?}",
+            d.get_head_commit().unwrap(),
+            d.get_commits().unwrap()
+        );
+    }
+
+    #[test]
     fn outbound_test() {
         let d = outbound::create_issue("issue title")
             .labels(vec!["test"])
@@ -79,13 +106,16 @@ mod github_tests {
             .body("message")
             .build()
             .unwrap();
-        
-        assert_eq!(serde_json::from_str::<Value>(&d).unwrap(), json!({
-            "title": "issue title",
-            "labels": ["test"],
-            "milestone": 1,
-            "assignees": ["ho-229"],
-            "body": "message"
-        }));
+
+        assert_eq!(
+            serde_json::from_str::<Value>(&d).unwrap(),
+            json!({
+                "title": "issue title",
+                "labels": ["test"],
+                "milestone": 1,
+                "assignees": ["ho-229"],
+                "body": "message"
+            })
+        );
     }
 }

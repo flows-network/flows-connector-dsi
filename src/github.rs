@@ -13,9 +13,9 @@ pub struct Repository {
     pub html_url: String,
     pub description: Option<String>,
     pub fork: bool,
-    pub created_at: String,
+    pub created_at: Value,
     pub updated_at: String,
-    pub pushed_at: String,
+    pub pushed_at: Value,
     pub git_url: String,
     pub ssh_url: String,
     pub clone_url: String,
@@ -163,7 +163,7 @@ pub struct MarketplacePurchase {
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
-pub struct Commit {
+pub struct PrPoint {
     pub label: String,
     pub r#ref: String,
     pub sha: String,
@@ -191,8 +191,8 @@ pub struct PullRequest {
     pub assignees: Vec<User>,
     pub requested_reviewers: Vec<User>,
     pub labels: Vec<Label>,
-    pub head: Commit,
-    pub base: Commit,
+    pub head: PrPoint,
+    pub base: PrPoint,
     pub author_association: String,
     pub draft: Option<bool>,
     pub merged: Option<bool>,
@@ -281,6 +281,29 @@ pub struct WorkflowJob {
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
+pub struct GitUser {
+    pub name: String,
+    pub email: String,
+    pub username: Option<String>,
+}
+
+#[allow(dead_code)]
+#[derive(Deserialize, Debug)]
+pub struct Commit {
+    pub distinct: bool,
+    #[serde(default)]
+    pub message: String,
+    pub timestamp: String,
+    pub url: String,
+    pub author: GitUser,
+    pub committer: GitUser,
+    pub added: Vec<String>,
+    pub removed: Vec<String>,
+    pub modified: Vec<String>,
+}
+
+#[allow(dead_code)]
+#[derive(Deserialize, Debug)]
 pub struct InboundData {
     pub sender: User,
 
@@ -298,11 +321,8 @@ pub struct InboundData {
     pub release: Option<Release>,
     pub starred_at: Option<String>,
     pub workflow_job: Option<WorkflowJob>,
-    pub r#ref: Option<String>,
-    pub ref_type: Option<String>,
-    pub pusher_type: Option<String>,
-    pub master_branch: Option<String>,
-    pub description: Option<String>,
+    pub head_commit: Option<Commit>,
+    pub commits: Option<Vec<Commit>>,
 
     #[serde(flatten)]
     pub extra: HashMap<String, Value>,
@@ -397,29 +417,14 @@ impl InboundData {
             .ok_or("Missing workflow_job".to_string())
     }
 
-    #[inline]
-    pub fn get_ref(&self) -> Result<&String, String> {
-        self.r#ref.as_ref().ok_or("Missing ref".to_string())
+    pub fn get_head_commit(&self) -> Result<&Commit, String> {
+        self.head_commit
+            .as_ref()
+            .ok_or("Missing head_commit".to_string())
     }
 
-    #[inline]
-    pub fn get_ref_type(&self) -> Result<&String, String> {
-        self.ref_type.as_ref().ok_or("Missing ref_type".to_string())
-    }
-
-    #[inline]
-    pub fn get_pusher_type(&self) -> Result<&String, String> {
-        self.pusher_type.as_ref().ok_or("Missing pusher_type".to_string())
-    }
-
-    #[inline]
-    pub fn get_master_branch(&self) -> Result<&String, String> {
-        self.master_branch.as_ref().ok_or("Missing master_branch".to_string())
-    }
-
-    #[inline]
-    pub fn get_description(&self) -> Result<&String, String> {
-        self.description.as_ref().ok_or("Missing description".to_string())
+    pub fn get_commits(&self) -> Result<&Vec<Commit>, String> {
+        self.commits.as_ref().ok_or("Missing commits".to_string())
     }
 }
 
