@@ -421,6 +421,10 @@ pub mod outbound {
         }
 
         pub fn build(self) -> Result<String, String> {
+            if self.inner.len() < 2 {
+                return Err("OutboundData build failed: Too few fields".to_string());
+            }
+
             serde_json::to_string(&self)
                 .map_err(|e| format!("OutboundData build failed: {}", e.to_string()))
         }

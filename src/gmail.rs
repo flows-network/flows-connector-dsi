@@ -20,6 +20,10 @@ impl OutboundData {
     }
 
     pub fn build(self) -> Result<String, String> {
+        if self.content.is_empty() {
+            return Err("OutboundData build failed: Content is empty".to_string());
+        }
+
         Ok(format!("{}\r\n{}", self.fields, self.content.replace("\n", "\r\n")))
     }
 }
