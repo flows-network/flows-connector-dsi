@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use serde::Deserialize;
+use serde::{de::DeserializeOwned, Deserialize};
 use serde_json::Value;
 
 #[allow(dead_code)]
@@ -298,6 +298,11 @@ pub struct InboundData {
     pub release: Option<Release>,
     pub starred_at: Option<String>,
     pub workflow_job: Option<WorkflowJob>,
+    pub r#ref: Option<String>,
+    pub ref_type: Option<String>,
+    pub pusher_type: Option<String>,
+    pub master_branch: Option<String>,
+    pub description: Option<String>,
 
     #[serde(flatten)]
     pub extra: HashMap<String, Value>,
@@ -305,10 +310,22 @@ pub struct InboundData {
 
 impl InboundData {
     #[inline]
+    pub fn get<T: DeserializeOwned, I: ToString>(&self, index: &I) -> Result<T, String> {
+        serde_json::from_value(
+            self.extra
+                .get(&index.to_string())
+                .ok_or(format!("Missing {}", index.to_string()))?
+                .clone(),
+        )
+        .map_err(|e| e.to_string())
+    }
+
+    #[inline]
     pub fn get_action(&self) -> Result<&String, String> {
         self.action.as_ref().ok_or("Missing action".to_string())
     }
 
+    #[inline]
     pub fn get_repository(&self) -> Result<&Repository, String> {
         self.repository
             .as_ref()
@@ -379,12 +396,36 @@ impl InboundData {
             .as_ref()
             .ok_or("Missing workflow_job".to_string())
     }
+
+    #[inline]
+    pub fn get_ref(&self) -> Result<&String, String> {
+        self.r#ref.as_ref().ok_or("Missing ref".to_string())
+    }
+
+    #[inline]
+    pub fn get_ref_type(&self) -> Result<&String, String> {
+        self.ref_type.as_ref().ok_or("Missing ref_type".to_string())
+    }
+
+    #[inline]
+    pub fn get_pusher_type(&self) -> Result<&String, String> {
+        self.pusher_type.as_ref().ok_or("Missing pusher_type".to_string())
+    }
+
+    #[inline]
+    pub fn get_master_branch(&self) -> Result<&String, String> {
+        self.master_branch.as_ref().ok_or("Missing master_branch".to_string())
+    }
+
+    #[inline]
+    pub fn get_description(&self) -> Result<&String, String> {
+        self.description.as_ref().ok_or("Missing description".to_string())
+    }
 }
 
 pub fn inbound(s: String) -> Result<InboundData, String> {
     serde_json::from_str::<InboundData>(&s)
-        .map_err(|e| 
-            format!("Parsing GitHub Webhook payload failed: {}", e.to_string()))
+        .map_err(|e| format!("Parsing GitHub Webhook payload failed: {}", e.to_string()))
 }
 
 pub mod outbound {
