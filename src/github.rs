@@ -78,7 +78,7 @@ pub struct DiscussionCategory {
 pub struct Comment {
     pub html_url: String,
     pub user: User,
-    pub position: Option<String>,
+    pub position: Option<u32>,
     pub path: Option<String>,
     pub created_at: String,
     pub updated_at: String,

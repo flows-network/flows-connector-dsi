@@ -43,6 +43,18 @@ mod github_tests {
     }
 
     #[test]
+    fn pr_review_comment_test() {
+        let s = include_str!("github_pr_review_comment.json").to_string();
+        let d = inbound(s).unwrap();
+
+        println!(
+            "{:#?}\n{:#?}",
+            d.get_comment().unwrap(),
+            d.get_pull_request().unwrap()
+        );
+    }
+
+    #[test]
     fn label_test() {
         let s = include_str!("github_label.json").to_string();
 
