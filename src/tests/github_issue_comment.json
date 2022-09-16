@@ -249,6 +249,7 @@
         "disabled": false,
         "open_issues_count": 1,
         "license": null,
+        "visibility": "public",
         "forks": 0,
         "open_issues": 1,
         "watchers": 0,

@@ -173,6 +173,7 @@
         "disabled": false,
         "open_issues_count": 39,
         "license": null,
+        "visibility": "private",
         "forks": 0,
         "open_issues": 39,
         "watchers": 0,

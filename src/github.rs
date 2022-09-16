@@ -35,6 +35,7 @@ pub struct Repository {
     pub disabled: bool,
     pub open_issues_count: u32,
     pub license: Option<String>,
+    pub visibility: String,
     pub forks: u32,
     pub open_issues: u32,
     pub watchers: u32,

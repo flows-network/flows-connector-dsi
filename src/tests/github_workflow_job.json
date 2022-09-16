@@ -123,6 +123,7 @@
         "disabled": false,
         "open_issues_count": 0,
         "license": null,
+        "visibility": "private",
         "forks": 0,
         "open_issues": 0,
         "watchers": 0,

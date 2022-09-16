@@ -93,6 +93,7 @@
         "disabled": false,
         "open_issues_count": 2,
         "license": null,
+        "visibility": "public",
         "forks": 1,
         "open_issues": 2,
         "watchers": 0,
