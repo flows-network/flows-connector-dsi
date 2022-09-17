@@ -259,7 +259,7 @@ pub struct WorkflowStep {
     pub status: String,
     pub conclusion: Option<String>,
     pub number: u32,
-    pub started_at: String,
+    pub started_at: Option<String>,
     pub completed_at: Option<String>,
 }
 
