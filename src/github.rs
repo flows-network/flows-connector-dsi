@@ -274,10 +274,10 @@ pub struct WorkflowJob {
     pub name: String,
     pub steps: Vec<WorkflowStep>,
     pub labels: Vec<String>,
-    pub runner_id: u32,
-    pub runner_name: String,
-    pub runner_group_id: u32,
-    pub runner_group_name: String,
+    pub runner_id: Option<u32>,
+    pub runner_name: Option<String>,
+    pub runner_group_id: Option<u32>,
+    pub runner_group_name: Option<String>,
 }
 
 #[allow(dead_code)]
