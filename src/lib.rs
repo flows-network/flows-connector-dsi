@@ -2,6 +2,7 @@ pub mod github;
 pub mod notion;
 pub mod gmail;
 pub mod sendgrid;
+pub mod twilio;
 
 mod tests;
 
