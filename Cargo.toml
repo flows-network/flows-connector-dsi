@@ -4,6 +4,10 @@ version = "0.1.0"
 edition = "2021"
 description = "Data struct interface used in flow functions of flows.network"
 license = "MIT"
+repository = "https://github.com/second-state/flows-connector-dsi"
+authors = [
+    "ho-229 <ho229v3666@gmail.com>",
+]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
