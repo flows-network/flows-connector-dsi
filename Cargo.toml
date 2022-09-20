@@ -1,7 +1,8 @@
 [package]
-name = "connector-dsi"
+name = "flows-connector-dsi"
 version = "0.1.0"
 edition = "2021"
+description = "Data struct interface used in flow functions of flows.network"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

@@ -431,7 +431,7 @@ impl InboundData {
 
 pub fn inbound(s: String) -> Result<InboundData, String> {
     serde_json::from_str::<InboundData>(&s)
-        .map_err(|e| format!("Parsing GitHub Webhook payload failed: {}", e.to_string()))
+        .map_err(|_| format!("Parsing GitHub Webhook payload failed: {}", s))
 }
 
 pub mod outbound {
