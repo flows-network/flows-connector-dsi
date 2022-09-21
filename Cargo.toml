@@ -1,6 +1,6 @@
 [package]
 name = "flows-connector-dsi"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Data struct interface used in flow functions of flows.network"
 license = "MIT"

@@ -5,6 +5,19 @@ use serde_json::Value;
 
 #[allow(dead_code)]
 #[derive(Deserialize, Debug)]
+#[serde(untagged)]
+pub enum License {
+    Object {
+        key: String,
+        name: String,
+        spdx_id: String,
+        url: String
+    },
+    Name(String)
+}
+
+#[allow(dead_code)]
+#[derive(Deserialize, Debug)]
 pub struct Repository {
     pub name: String,
     pub full_name: String,
@@ -34,7 +47,7 @@ pub struct Repository {
     pub archived: bool,
     pub disabled: bool,
     pub open_issues_count: u32,
-    pub license: Option<String>,
+    pub license: Option<License>,
     pub visibility: String,
     pub forks: u32,
     pub open_issues: u32,
@@ -430,6 +443,11 @@ impl InboundData {
 }
 
 pub fn inbound(s: String) -> Result<InboundData, String> {
+    #[cfg(debug_assertions)]
+    return serde_json::from_str::<InboundData>(&s)
+        .map_err(|e| format!("Parsing GitHub Webhook payload failed: {}", e.to_string()));
+
+    #[cfg(not(debug_assertions))]
     serde_json::from_str::<InboundData>(&s)
         .map_err(|_| format!("Parsing GitHub Webhook payload failed: {}", s))
 }
