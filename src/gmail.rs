@@ -10,12 +10,14 @@ impl OutboundData {
     }
 
     pub fn sender<S: Into<String>>(mut self, sender: S) -> OutboundData {
-        self.fields.push_str(&format!("Sender: {}\r\n", sender.into()));
+        self.fields
+            .push_str(&format!("Sender: {}\r\n", sender.into()));
         self
     }
 
     pub fn subject<S: Into<String>>(mut self, subject: S) -> OutboundData {
-        self.fields.push_str(&format!("Subject: {}\r\n", subject.into()));
+        self.fields
+            .push_str(&format!("Subject: {}\r\n", subject.into()));
         self
     }
 
@@ -24,7 +26,11 @@ impl OutboundData {
             return Err("OutboundData build failed: Content is empty".to_string());
         }
 
-        Ok(format!("{}\r\n{}", self.fields, self.content.replace("\n", "\r\n")))
+        Ok(format!(
+            "{}\r\n{}",
+            self.fields,
+            self.content.replace("\n", "\r\n")
+        ))
     }
 }
 

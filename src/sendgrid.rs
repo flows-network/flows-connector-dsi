@@ -1,5 +1,5 @@
 use serde::Serialize;
-use serde_json::{Value, json};
+use serde_json::{json, Value};
 
 #[derive(Serialize)]
 pub struct OutboundData {
@@ -38,8 +38,10 @@ impl OutboundData {
 }
 
 pub fn outbound<S: Into<String> + Serialize>(emails: Vec<S>) -> OutboundData {
-    let emails = emails.into_iter()
-        .map(|e| json!({ "email": e })).collect::<Vec<_>>();
+    let emails = emails
+        .into_iter()
+        .map(|e| json!({ "email": e }))
+        .collect::<Vec<_>>();
 
     OutboundData {
         personalizations: json!([{ "to": emails }]),

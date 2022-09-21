@@ -1,6 +1,7 @@
 pub mod github;
-pub mod notion;
 pub mod gmail;
+pub mod monday;
+pub mod notion;
 pub mod sendgrid;
 pub mod twilio;
 
