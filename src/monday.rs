@@ -1,4 +1,4 @@
-use chrono::NaiveDate;
+pub use chrono::NaiveDate;
 use serde::Serialize;
 use serde_json::{json, Value};
 use std::collections::HashMap;
