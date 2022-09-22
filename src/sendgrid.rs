@@ -32,7 +32,7 @@ impl OutboundData {
             return Err("OutboundData build failed: Content is empty".to_string());
         }
 
-        serde_json::to_string(&self)
+        serde_json::to_string(&vec![self])
             .map_err(|e| format!("OutboundData build failed: {}", e.to_string()))
     }
 }
