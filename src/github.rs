@@ -3,7 +3,6 @@ use std::collections::HashMap;
 use serde::{de::DeserializeOwned, Deserialize};
 use serde_json::Value;
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 #[serde(untagged)]
 pub enum License {
@@ -11,12 +10,11 @@ pub enum License {
         key: String,
         name: String,
         spdx_id: String,
-        url: String
+        url: String,
     },
-    Name(String)
+    Name(String),
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Repository {
     pub name: String,
@@ -55,7 +53,6 @@ pub struct Repository {
     pub default_branch: String,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Organization {
     pub login: String,
@@ -63,7 +60,6 @@ pub struct Organization {
     pub description: Option<String>,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct User {
     pub login: String,
@@ -74,7 +70,6 @@ pub struct User {
     pub site_admin: bool,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct DiscussionCategory {
     pub name: String,
@@ -86,7 +81,6 @@ pub struct DiscussionCategory {
     pub is_answerable: bool,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Comment {
     pub html_url: String,
@@ -99,7 +93,6 @@ pub struct Comment {
     pub body: String,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Discussion {
     pub category: DiscussionCategory,
@@ -122,7 +115,6 @@ pub struct Discussion {
 
 type Fork = Repository;
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Label {
     pub name: String,
@@ -130,7 +122,6 @@ pub struct Label {
     pub default: bool,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Issue {
     pub active_lock_reason: Option<String>,
@@ -151,7 +142,6 @@ pub struct Issue {
     pub body: Option<String>,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Plan {
     pub name: String,
@@ -164,7 +154,6 @@ pub struct Plan {
     pub bullets: Vec<String>,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct MarketplacePurchase {
     pub billing_cycle: String,
@@ -175,7 +164,6 @@ pub struct MarketplacePurchase {
     pub plan: Plan,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct PrPoint {
     pub label: String,
@@ -185,7 +173,6 @@ pub struct PrPoint {
     pub repo: Repository,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct PullRequest {
     pub html_url: String,
@@ -222,7 +209,6 @@ pub struct PullRequest {
     pub changed_files: Option<u32>,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Review {
     pub user: User,
@@ -234,7 +220,6 @@ pub struct Review {
     pub author_association: String,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct ReleaseAsset {
     pub browser_download_url: String,
@@ -249,7 +234,6 @@ pub struct ReleaseAsset {
     pub uploader: User,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Release {
     pub html_url: String,
@@ -265,7 +249,6 @@ pub struct Release {
     pub body: Option<String>,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct WorkflowStep {
     pub name: String,
@@ -276,7 +259,6 @@ pub struct WorkflowStep {
     pub completed_at: Option<String>,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct WorkflowJob {
     pub html_url: String,
@@ -293,7 +275,6 @@ pub struct WorkflowJob {
     pub runner_group_name: Option<String>,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct GitUser {
     pub name: String,
@@ -301,7 +282,6 @@ pub struct GitUser {
     pub username: Option<String>,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct Commit {
     pub distinct: bool,
@@ -316,7 +296,6 @@ pub struct Commit {
     pub modified: Vec<String>,
 }
 
-#[allow(dead_code)]
 #[derive(Deserialize, Debug)]
 pub struct InboundData {
     pub sender: User,
@@ -343,6 +322,12 @@ pub struct InboundData {
 }
 
 impl InboundData {
+    /// Gets the value from `extra` and deserializes into `T`.
+    ///
+    /// eg.
+    /// ```rust
+    /// let r#ref: String = payload.get("ref").unwrap();
+    /// ```
     #[inline]
     pub fn get<T: DeserializeOwned, I: ToString>(&self, index: &I) -> Result<T, String> {
         serde_json::from_value(
@@ -442,6 +427,7 @@ impl InboundData {
     }
 }
 
+/// Deserialize the GitHub Webhook Payload into `InboundData`.
 pub fn inbound(s: String) -> Result<InboundData, String> {
     #[cfg(debug_assertions)]
     return serde_json::from_str::<InboundData>(&s)
@@ -465,26 +451,31 @@ pub mod outbound {
     }
 
     impl<'a> OutboundData<'a> {
+        /// Set the issue or issue comment body.
         pub fn body<S: ToString + Serialize>(mut self, body: S) -> OutboundData<'a> {
             self.inner.insert("body", json!(body));
             self
         }
 
+        /// Set Milestone.
         pub fn milestone(mut self, milestone: Value) -> OutboundData<'a> {
             self.inner.insert("milestone", milestone);
             self
         }
 
+        /// Set labels.
         pub fn labels<S: ToString + Serialize>(mut self, labels: Vec<S>) -> OutboundData<'a> {
             self.inner.insert("labels", json!(labels));
             self
         }
 
+        /// Set assignees.
         pub fn assignees<S: ToString + Serialize>(mut self, assignees: Vec<S>) -> OutboundData<'a> {
             self.inner.insert("assignees", json!(assignees));
             self
         }
 
+        /// Build outbound JSON data.
         pub fn build(self) -> Result<String, String> {
             if self.inner.len() < 2 {
                 return Err("OutboundData build failed: Too few fields".to_string());
@@ -495,6 +486,7 @@ pub mod outbound {
         }
     }
 
+    /// Create an issue with the title.
     pub fn create_issue<'a, S: ToString + Serialize>(title: S) -> OutboundData<'a> {
         OutboundData {
             inner: [("title", json!(title))]
@@ -503,6 +495,8 @@ pub mod outbound {
         }
     }
 
+    /// Modified an issue like change the assignees or labels,
+    /// create a comment, etc.
     pub fn modify_issue<'a>(issue_number: u32) -> OutboundData<'a> {
         OutboundData {
             inner: [("issue_number", json!(issue_number))]

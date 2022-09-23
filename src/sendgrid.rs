@@ -12,6 +12,7 @@ pub struct OutboundData {
 }
 
 impl OutboundData {
+    /// Set the content of email, this field is required.
     pub fn content<S: Into<String> + Serialize>(mut self, content: S) -> OutboundData {
         self.content = json!([
             {
@@ -22,11 +23,13 @@ impl OutboundData {
         self
     }
 
+    /// Set the subject of email, this field is optional.
     pub fn subject<S: Into<String>>(mut self, subject: S) -> OutboundData {
         self.subject = Some(subject.into());
         self
     }
 
+    /// Build outbound JSON data.
     pub fn build(self) -> Result<String, String> {
         if self.content == Value::Null {
             return Err("OutboundData build failed: Content is empty".to_string());
@@ -37,6 +40,15 @@ impl OutboundData {
     }
 }
 
+/// Send an email to multiple email addresses via SendGrid.
+/// 
+/// eg.
+/// ```rust
+/// outbound(vec!["ho-229@example.com"])
+///     .subject("Hi")
+///     .content("Hello world!")
+///     .build()
+/// ```
 pub fn outbound<S: Into<String> + Serialize>(emails: Vec<S>) -> OutboundData {
     let emails = emails
         .into_iter()
