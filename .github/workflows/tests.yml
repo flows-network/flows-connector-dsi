@@ -1,0 +1,29 @@
+name: tests
+
+on:
+  push:
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+
+  pull_request:
+    paths-ignore:
+      - 'README.md'
+      - 'LICENSE'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Rust cache
+        uses: Swatinem/rust-cache@v1
+
+      - name: Tests
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --tests --release
