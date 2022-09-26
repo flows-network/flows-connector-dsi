@@ -8,6 +8,7 @@ repository = "https://github.com/second-state/flows-connector-dsi"
 authors = [
     "ho-229 <ho229v3666@gmail.com>",
 ]
+readme = "README.md"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
