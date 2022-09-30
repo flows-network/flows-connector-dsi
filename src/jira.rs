@@ -15,26 +15,8 @@ pub mod outbound {
         }
 
         /// Set description.
-        pub fn description<S: Into<String>>(mut self, paragraphs: Vec<S>) -> OutboundData<'a> {
-            self.inner.insert(
-                "description",
-                json!({
-                    "type": "doc",
-                    "version": "1",
-                    "content": paragraphs
-                        .into_iter()
-                        .map(|paragraph| json!({
-                            "type": "paragraph",
-                            "content": [
-                                {
-                                    "text": paragraph.into(),
-                                    "type": "text"
-                                }
-                            ]
-                        }))
-                        .collect::<Vec<_>>()
-                }),
-            );
+        pub fn description<S: Into<String>>(mut self, description: S) -> OutboundData<'a> {
+            self.inner.insert("description", json!(description.into()));
             self
         }
 

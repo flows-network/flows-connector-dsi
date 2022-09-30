@@ -1,6 +1,6 @@
 [package]
 name = "flows-connector-dsi"
-version = "0.1.4"
+version = "0.1.5"
 edition = "2021"
 description = "Data struct interface used in flow functions of flows.network"
 license = "MIT"
@@ -13,6 +13,6 @@ readme = "README.md"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-serde = { version = "1.0.144", features = ["derive"] }
-serde_json = { version = "1.0.85" }
-chrono = "0.4.22"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0" }
+chrono = "0.4"
