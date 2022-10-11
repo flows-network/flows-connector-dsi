@@ -1,0 +1,212 @@
+{
+    "changelog": {
+        "id": "10107",
+        "items": [
+            {
+                "field": "resolution",
+                "fieldId": "resolution",
+                "fieldtype": "jira",
+                "from": "10000",
+                "fromString": "Done",
+                "to": null,
+                "toString": null
+            },
+            {
+                "field": "status",
+                "fieldId": "status",
+                "fieldtype": "jira",
+                "from": "10004",
+                "fromString": "closed",
+                "to": "10003",
+                "toString": "open"
+            }
+        ]
+    },
+    "issue": {
+        "fields": {
+            "aggregateprogress": {
+                "progress": 0,
+                "total": 0
+            },
+            "aggregatetimeestimate": null,
+            "aggregatetimeoriginalestimate": null,
+            "aggregatetimespent": null,
+            "assignee": null,
+            "attachment": [],
+            "components": [],
+            "created": "2022-10-11T16:22:18.994+0800",
+            "creator": {
+                "accountId": "6332a6eb140ba0bf651b5a74",
+                "accountType": "atlassian",
+                "active": true,
+                "avatarUrls": {
+                    "16x16": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                    "24x24": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                    "32x32": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                    "48x48": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png"
+                },
+                "displayName": "Ho 229",
+                "self": "https://ho229.atlassian.net/rest/api/2/user?accountId=6332a6eb140ba0bf651b5a74",
+                "timeZone": "Asia/Shanghai"
+            },
+            "customfield_10001": null,
+            "customfield_10002": null,
+            "customfield_10003": null,
+            "customfield_10004": null,
+            "customfield_10005": null,
+            "customfield_10006": null,
+            "customfield_10007": null,
+            "customfield_10008": null,
+            "customfield_10009": null,
+            "customfield_10010": null,
+            "customfield_10014": null,
+            "customfield_10015": null,
+            "customfield_10016": null,
+            "customfield_10017": null,
+            "customfield_10018": {
+                "hasEpicLinkFieldDependency": false,
+                "nonEditableReason": {
+                    "message": "父项链接仅可供 Jira Premium 用户使用。",
+                    "reason": "PLUGIN_LICENSE_ERROR"
+                },
+                "showField": false
+            },
+            "customfield_10019": "0|i0003b:",
+            "customfield_10020": null,
+            "customfield_10021": null,
+            "customfield_10022": null,
+            "customfield_10023": null,
+            "customfield_10024": null,
+            "customfield_10025": "10004_*:*_1_*:*_410_*|*_10003_*:*_1_*:*_0",
+            "customfield_10026": null,
+            "customfield_10027": null,
+            "customfield_10028": null,
+            "customfield_10029": null,
+            "description": null,
+            "duedate": null,
+            "environment": null,
+            "fixVersions": [],
+            "issuelinks": [],
+            "issuerestriction": {
+                "issuerestrictions": {},
+                "shouldDisplay": true
+            },
+            "issuetype": {
+                "avatarId": 10318,
+                "description": "Tasks track small, distinct pieces of work.",
+                "entityId": "173b3db5-5df2-47b7-be35-4d7f51d3e64a",
+                "hierarchyLevel": 0,
+                "iconUrl": "https://ho229.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                "id": "10001",
+                "name": "Task",
+                "self": "https://ho229.atlassian.net/rest/api/2/issuetype/10001",
+                "subtask": false
+            },
+            "labels": [],
+            "lastViewed": null,
+            "priority": {
+                "iconUrl": "https://ho229.atlassian.net/images/icons/priorities/medium.svg",
+                "id": "3",
+                "name": "Medium",
+                "self": "https://ho229.atlassian.net/rest/api/2/priority/3"
+            },
+            "progress": {
+                "progress": 0,
+                "total": 0
+            },
+            "project": {
+                "avatarUrls": {
+                    "16x16": "https://ho229.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418?size=xsmall",
+                    "24x24": "https://ho229.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418?size=small",
+                    "32x32": "https://ho229.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418?size=medium",
+                    "48x48": "https://ho229.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418"
+                },
+                "id": "10000",
+                "key": "HT",
+                "name": "haiku-test",
+                "projectTypeKey": "software",
+                "self": "https://ho229.atlassian.net/rest/api/2/project/10000",
+                "simplified": true
+            },
+            "reporter": {
+                "accountId": "6332a6eb140ba0bf651b5a74",
+                "accountType": "atlassian",
+                "active": true,
+                "avatarUrls": {
+                    "16x16": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                    "24x24": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                    "32x32": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                    "48x48": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png"
+                },
+                "displayName": "Ho 229",
+                "self": "https://ho229.atlassian.net/rest/api/2/user?accountId=6332a6eb140ba0bf651b5a74",
+                "timeZone": "Asia/Shanghai"
+            },
+            "resolution": {
+                "description": "Work has been completed on this issue.",
+                "id": "10000",
+                "name": "Done",
+                "self": "https://ho229.atlassian.net/rest/api/2/resolution/10000"
+            },
+            "resolutiondate": "2022-10-11T16:22:18.990+0800",
+            "security": null,
+            "status": {
+                "description": "",
+                "iconUrl": "https://ho229.atlassian.net/",
+                "id": "10004",
+                "name": "closed",
+                "self": "https://ho229.atlassian.net/rest/api/2/status/10004",
+                "statusCategory": {
+                    "colorName": "green",
+                    "id": 3,
+                    "key": "done",
+                    "name": "Complete",
+                    "self": "https://ho229.atlassian.net/rest/api/2/statuscategory/3"
+                }
+            },
+            "statuscategorychangedate": "2022-10-11T16:22:19.384+0800",
+            "subtasks": [],
+            "summary": "New Issue",
+            "timeestimate": null,
+            "timeoriginalestimate": null,
+            "timespent": null,
+            "timetracking": {},
+            "updated": "2022-10-11T16:22:18.994+0800",
+            "versions": [],
+            "votes": {
+                "hasVoted": false,
+                "self": "https://ho229.atlassian.net/rest/api/2/issue/HT-21/votes",
+                "votes": 0
+            },
+            "watches": {
+                "isWatching": true,
+                "self": "https://ho229.atlassian.net/rest/api/2/issue/HT-21/watchers",
+                "watchCount": 0
+            },
+            "workratio": -1
+        },
+        "id": "10020",
+        "key": "HT-21",
+        "self": "https://ho229.atlassian.net/rest/api/2/10020"
+    },
+    "issue_event_type_name": "issue_created",
+    "matchedWebhookIds": [
+        5
+    ],
+    "timestamp": 1665476539153,
+    "user": {
+        "accountId": "6332a6eb140ba0bf651b5a74",
+        "accountType": "atlassian",
+        "active": true,
+        "avatarUrls": {
+            "16x16": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+            "24x24": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+            "32x32": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+            "48x48": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png"
+        },
+        "displayName": "Ho 229",
+        "self": "https://ho229.atlassian.net/rest/api/2/user?accountId=6332a6eb140ba0bf651b5a74",
+        "timeZone": "Asia/Shanghai"
+    },
+    "webhookEvent": "jira:issue_created"
+}

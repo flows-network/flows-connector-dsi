@@ -1,0 +1,98 @@
+{
+    "comment": {
+        "author": {
+            "accountId": "6332a6eb140ba0bf651b5a74",
+            "accountType": "atlassian",
+            "active": true,
+            "avatarUrls": {
+                "16x16": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                "24x24": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                "32x32": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                "48x48": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png"
+            },
+            "displayName": "Ho 229",
+            "self": "https://ho229.atlassian.net/rest/api/2/user?accountId=6332a6eb140ba0bf651b5a74",
+            "timeZone": "Asia/Shanghai"
+        },
+        "body": "New comment",
+        "created": "2022-10-11T17:46:53.600+0800",
+        "id": "10002",
+        "jsdPublic": true,
+        "self": "https://ho229.atlassian.net/rest/api/2/issue/10020/comment/10002",
+        "updateAuthor": {
+            "accountId": "6332a6eb140ba0bf651b5a74",
+            "accountType": "atlassian",
+            "active": true,
+            "avatarUrls": {
+                "16x16": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                "24x24": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                "32x32": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png",
+                "48x48": "https://secure.gravatar.com/avatar/19f45e253a4c53990cb7bcfc93a22068?d=https%3A%2F%2Favatar-management--avatars.us-west-2.prod.public.atl-paas.net%2Fdefault-avatar-6.png"
+            },
+            "displayName": "Ho 229",
+            "self": "https://ho229.atlassian.net/rest/api/2/user?accountId=6332a6eb140ba0bf651b5a74",
+            "timeZone": "Asia/Shanghai"
+        },
+        "updated": "2022-10-11T17:46:53.600+0800"
+    },
+    "eventType": "primaryAction",
+    "issue": {
+        "fields": {
+            "assignee": null,
+            "issuetype": {
+                "avatarId": 10318,
+                "description": "特殊的小任务。",
+                "entityId": "173b3db5-5df2-47b7-be35-4d7f51d3e64a",
+                "hierarchyLevel": 0,
+                "iconUrl": "https://ho229.atlassian.net/rest/api/2/universal_avatar/view/type/issuetype/avatar/10318?size=medium",
+                "id": "10001",
+                "name": "任务",
+                "self": "https://ho229.atlassian.net/rest/api/2/issuetype/10001",
+                "subtask": false
+            },
+            "priority": {
+                "iconUrl": "https://ho229.atlassian.net/images/icons/priorities/medium.svg",
+                "id": "3",
+                "name": "Medium",
+                "self": "https://ho229.atlassian.net/rest/api/2/priority/3"
+            },
+            "project": {
+                "avatarUrls": {
+                    "16x16": "https://ho229.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418?size=xsmall",
+                    "24x24": "https://ho229.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418?size=small",
+                    "32x32": "https://ho229.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418?size=medium",
+                    "48x48": "https://ho229.atlassian.net/rest/api/2/universal_avatar/view/type/project/avatar/10418"
+                },
+                "id": "10000",
+                "key": "HT",
+                "name": "haiku-test",
+                "projectTypeKey": "software",
+                "self": "https://ho229.atlassian.net/rest/api/2/project/10000",
+                "simplified": true
+            },
+            "status": {
+                "description": "事务已经准备好让经办人开始处理。",
+                "iconUrl": "https://ho229.atlassian.net/",
+                "id": "10003",
+                "name": "打开",
+                "self": "https://ho229.atlassian.net/rest/api/2/status/10003",
+                "statusCategory": {
+                    "colorName": "yellow",
+                    "id": 4,
+                    "key": "indeterminate",
+                    "name": "正在进行",
+                    "self": "https://ho229.atlassian.net/rest/api/2/statuscategory/4"
+                }
+            },
+            "summary": "New Issue"
+        },
+        "id": "10020",
+        "key": "HT-21",
+        "self": "https://ho229.atlassian.net/rest/api/2/10020"
+    },
+    "matchedWebhookIds": [
+        5
+    ],
+    "timestamp": 1665481613600,
+    "webhookEvent": "comment_created"
+}
