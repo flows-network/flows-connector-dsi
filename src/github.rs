@@ -504,4 +504,13 @@ pub mod outbound {
                 .collect::<HashMap<&str, Value>>(),
         }
     }
+
+    /// Merge a pull request.
+    pub fn merge_pull<'a>(pull_number: u32) -> OutboundData<'a> {
+        OutboundData {
+            inner: [("pull_number", json!(pull_number))]
+                .into_iter()
+                .collect::<HashMap<&str, Value>>(),
+        }
+    }
 }
