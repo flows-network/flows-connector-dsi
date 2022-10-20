@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
+use serde_repr::{Serialize_repr, Deserialize_repr};
 
 /// Information about a user.
 #[derive(Debug, Deserialize, Serialize)]
@@ -60,7 +61,8 @@ pub struct Attachment {
 }
 
 /// Differentiates between regular and different types of system messages.
-#[derive(Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[derive(Debug, Eq, PartialEq, Serialize_repr, Deserialize_repr)]
+#[repr(u8)]
 pub enum MessageType {
     /// A regular message.
     Regular = 0,
@@ -177,7 +179,7 @@ pub struct Message {
     pub guild_id: Option<String>,
     /// Indicator of the type of message this is, i.e. whether it is a regular
     /// message or a system message.
-    //#[serde(rename = "type")]
+    #[serde(rename = "type")]
     pub kind: MessageType,
     /// A partial amount of data about the user's member data, if this message
     /// was sent in a guild.
