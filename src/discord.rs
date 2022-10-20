@@ -15,7 +15,7 @@ pub struct User {
     pub bot: bool,
     /// The account's discriminator to differentiate the user from others with
     /// the same [`Self::name`]. The name+discriminator pair is always unique.
-    pub discriminator: u16,
+    pub discriminator: String,
     /// The account's username. Changing username will trigger a discriminator
     /// change if the username+discriminator pair becomes non-unique.
     pub username: String,
