@@ -13,6 +13,9 @@ pub struct User {
     /// Indicator of whether the user is a bot.
     #[serde(default)]
     pub bot: bool,
+    /// The account's discriminator to differentiate the user from others with
+    /// the same [`Self::name`]. The name+discriminator pair is always unique.
+    pub discriminator: u16,
     /// The account's username. Changing username will trigger a discriminator
     /// change if the username+discriminator pair becomes non-unique.
     pub username: String,
