@@ -1,3 +1,5 @@
+use std::collections::HashMap;
+
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use serde_repr::{Serialize_repr, Deserialize_repr};
@@ -30,6 +32,9 @@ pub struct User {
     /// **Note**: This will only be present if the user is fetched via Rest API,
     /// e.g. with [`Http::get_user`].
     pub accent_color: Option<u32>,
+
+    #[serde(flatten)]
+    pub extra: HashMap<String, Value>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -61,6 +66,9 @@ pub struct Attachment {
     /// the message itself exists.
     #[serde(default)]
     pub ephemeral: bool,
+
+    #[serde(flatten)]
+    pub extra: HashMap<String, Value>,
 }
 
 /// Differentiates between regular and different types of system messages.
@@ -147,6 +155,9 @@ pub struct PartialMember {
     pub guild_id: Option<String>,
     /// Attached User struct.
     pub user: Option<User>,
+
+    #[serde(flatten)]
+    pub extra: HashMap<String, Value>,
 }
 
 /// Reference data sent with crossposted messages.
@@ -210,6 +221,9 @@ pub struct Message {
     /// Array of message sticker item objects.
     /// The message that was replied to using this message.
     pub referenced_message: Option<Box<Message>>, // Boxed to avoid recursion
+
+    #[serde(flatten)]
+    pub extra: HashMap<String, Value>,
 }
 
 pub type InboundData = Message;
