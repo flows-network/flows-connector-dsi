@@ -14,6 +14,7 @@ pub mod notion;
 pub mod sendgrid;
 pub mod twilio;
 pub mod jira;
+pub mod discord;
 
 pub use serde::*;
 pub use serde_json::*;
