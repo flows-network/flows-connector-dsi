@@ -1,0 +1,57 @@
+{
+    "my_chat_member": {
+        "chat": {
+            "id": -1001617856276,
+            "title": "haiku-dev-group",
+            "type": "supergroup"
+        },
+        "date": 1666237771,
+        "from": {
+            "first_name": "Ho",
+            "id": 1688457911,
+            "is_bot": false,
+            "language_code": "zh-hans",
+            "last_name": "229",
+            "username": "Ho229v3"
+        },
+        "new_chat_member": {
+            "can_add_web_page_previews": false,
+            "can_change_info": false,
+            "can_invite_users": false,
+            "can_pin_messages": false,
+            "can_send_media_messages": false,
+            "can_send_messages": false,
+            "can_send_other_messages": false,
+            "can_send_polls": false,
+            "is_member": true,
+            "status": "restricted",
+            "until_date": 0,
+            "user": {
+                "first_name": "haiku-dev",
+                "id": 5553196566,
+                "is_bot": true,
+                "username": "ndnznznMnjNhhBot"
+            }
+        },
+        "old_chat_member": {
+            "can_be_edited": false,
+            "can_change_info": true,
+            "can_delete_messages": true,
+            "can_invite_users": true,
+            "can_manage_chat": true,
+            "can_manage_video_chats": true,
+            "can_manage_voice_chats": true,
+            "can_pin_messages": true,
+            "can_promote_members": false,
+            "can_restrict_members": true,
+            "is_anonymous": false,
+            "status": "administrator",
+            "user": {
+                "first_name": "haiku-dev",
+                "id": 5553196566,
+                "is_bot": true,
+                "username": "ndnznznMnjNhhBot"
+            }
+        }
+    }
+}

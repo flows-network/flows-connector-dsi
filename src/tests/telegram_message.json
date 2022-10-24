@@ -1,0 +1,29 @@
+{
+    "message": {
+        "chat": {
+            "first_name": "Ho",
+            "id": 1688457911,
+            "last_name": "229",
+            "type": "private",
+            "username": "Ho229v3"
+        },
+        "date": 1666235647,
+        "entities": [
+            {
+                "length": 5,
+                "offset": 0,
+                "type": "bot_command"
+            }
+        ],
+        "from": {
+            "first_name": "Ho",
+            "id": 1688457911,
+            "is_bot": false,
+            "language_code": "zh-hans",
+            "last_name": "229",
+            "username": "Ho229v3"
+        },
+        "message_id": 55,
+        "text": "/ping"
+    }
+}
