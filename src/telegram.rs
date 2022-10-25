@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 
 use serde::Deserialize;
-use serde_json::{json, Value};
+use serde_json::Value;
 
 #[derive(Deserialize, Debug)]
 pub struct User {
@@ -278,6 +278,34 @@ pub mod outbound {
         extra: HashMap<String, Value>,
     }
 
+    pub enum ChatId {
+        /// Unique identifier for the target chat
+        Id(i64),
+        /// Username of the target chat (in the format `@channelusername`)
+        Name(String),
+    }
+
+    impl From<i64> for ChatId {
+        fn from(n: i64) -> Self {
+            Self::Id(n)
+        }
+    }
+
+    impl From<String> for ChatId {
+        fn from(n: String) -> Self {
+            Self::Name(n)
+        }
+    }
+
+    impl ToString for ChatId {
+        fn to_string(&self) -> String {
+            match &*self {
+                ChatId::Id(n) => n.to_string(),
+                ChatId::Name(n) => n.clone(),
+            }
+        }
+    }
+
     #[derive(Serialize)]
     pub enum ParseMode {
         Markdown,
@@ -289,14 +317,14 @@ pub mod outbound {
     ///
     /// eg.
     /// ```rust
-    /// outbound::message(message.chat_id, "__PONG\\!__")
+    /// outbound::message(message.chat.id, "__PONG\\!__")
     ///     .reply(message.message_id)
     ///     .parse_mode(ParseMode::MarkdownV2)
     ///     .build()
     /// ```
-    pub fn message<C: Into<String>, T: Into<String>>(chat_id: C, message: T) -> OutboundData {
+    pub fn message<C: Into<ChatId>, T: Into<String>>(chat_id: C, message: T) -> OutboundData {
         OutboundData {
-            chat_id: chat_id.into(),
+            chat_id: chat_id.into().to_string(),
             extra: [("text".to_string(), json!(message.into()))]
                 .into_iter()
                 .collect(),
@@ -307,17 +335,17 @@ pub mod outbound {
     ///
     /// eg.
     /// ```rust
-    /// outbound::message(message.chat_id, message.message_id, "__PONG\\!__")
+    /// outbound::message(message.chat.id, message.message_id, "__PONG\\!__")
     ///     .parse_mode(ParseMode::MarkdownV2)
     ///     .build()
     /// ```
-    pub fn edit_message<C: Into<String>, M: Into<String>, T: Into<String>>(
+    pub fn edit_message<C: Into<ChatId>, M: Into<String>, T: Into<String>>(
         chat_id: C,
         message_id: M,
         message: T,
     ) -> OutboundData {
         OutboundData {
-            chat_id: chat_id.into(),
+            chat_id: chat_id.into().to_string(),
             extra: [
                 ("message_id".to_string(), json!(message_id.into())),
                 ("text".to_string(), json!(message.into())),
@@ -328,15 +356,15 @@ pub mod outbound {
     }
 
     /// Ban a user in a chat.
-    /// 
+    ///
     /// eg.
     /// ```rust
-    /// outbound::ban(message.chat_id, message.from.id)
+    /// outbound::ban(message.chat.id, message.from.id)
     ///     .build()
     /// ```
-    pub fn ban<C: Into<String>, T: Into<String>>(chat_id: C, user_id: T) -> OutboundData {
+    pub fn ban<C: Into<ChatId>, T: Into<String>>(chat_id: C, user_id: T) -> OutboundData {
         OutboundData {
-            chat_id: chat_id.into(),
+            chat_id: chat_id.into().to_string(),
             extra: [("user_id".to_string(), json!(user_id.into()))]
                 .into_iter()
                 .collect(),
