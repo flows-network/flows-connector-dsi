@@ -335,7 +335,7 @@ pub mod outbound {
     ///
     /// eg.
     /// ```rust
-    /// outbound::message(message.chat.id, message.message_id, "__PONG\\!__")
+    /// outbound::edit_message(message.chat.id, message.message_id, "__PONG\\!__")
     ///     .parse_mode(ParseMode::MarkdownV2)
     ///     .build()
     /// ```
@@ -374,7 +374,7 @@ pub mod outbound {
     impl OutboundData {
         /// Build outbound JSON data.
         pub fn build(self) -> Result<String, String> {
-            if self.extra.len() < 2 {
+            if self.extra.is_empty() {
                 return Err("OutboundData build failed: Too few fields".to_string());
             }
 
