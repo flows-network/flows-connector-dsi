@@ -313,7 +313,8 @@ pub mod outbound {
         HTML,
     }
 
-    /// Send a text message.
+    /// Send a text message. 
+    /// Click [here](https://core.telegram.org/bots/api#sendmessage) for other fields.
     ///
     /// eg.
     /// ```rust
@@ -331,7 +332,8 @@ pub mod outbound {
         }
     }
 
-    /// Send a text message.
+    /// Edit a text message.
+    /// Click [here](https://core.telegram.org/bots/api#editmessagetext) for other fields.
     ///
     /// eg.
     /// ```rust
@@ -356,6 +358,7 @@ pub mod outbound {
     }
 
     /// Ban a user in a chat.
+    /// Click [here](https://core.telegram.org/bots/api#banchatmember) for other fields.
     ///
     /// eg.
     /// ```rust

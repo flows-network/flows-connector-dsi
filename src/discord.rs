@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
-use serde_repr::{Serialize_repr, Deserialize_repr};
+use serde_repr::{Deserialize_repr, Serialize_repr};
 
 /// Information about a user.
 #[derive(Debug, Deserialize, Serialize)]
@@ -240,12 +240,17 @@ pub fn inbound(s: String) -> Result<InboundData, String> {
 }
 
 pub mod outbound {
+    use std::collections::HashMap;
+
     use serde::Serialize;
+    use serde_json::{json, Value};
 
     #[derive(Serialize)]
     pub struct OutboundData {
-        content: String,
-        reply_to: Option<super::InboundData>,
+        #[serde(flatten)]
+        inner: HashMap<&'static str, Value>,
+        // content: String,
+        // reply_to: Option<super::InboundData>,
     }
 
     impl OutboundData {
@@ -257,16 +262,42 @@ pub mod outbound {
     }
 
     /// Send or reply to a message.
-    /// 
+    ///
     /// eg.
     /// ```rust
-    /// outbound::say("hello world")
+    /// outbound::say("hello world", None)
     ///     .build()
     /// ```
     pub fn say<C: Into<String>>(content: C, reply_to: Option<super::InboundData>) -> OutboundData {
         OutboundData {
-            content: content.into(),
-            reply_to,
+            inner: [
+                ("content", json!(content.into())),
+                ("reply_to", json!(reply_to)),
+            ]
+            .into_iter()
+            .collect(),
+        }
+    }
+
+    /// Create a guild ban, and optionally delete previous messages sent by the banned user.
+    ///
+    /// - **dmd** number of seconds to delete messages for, between 0 and 604800 (7 days)
+    /// 
+    /// eg.
+    /// ```rust
+    /// outbound::ban(user_id, String::new(), 0)
+    ///     .build()
+    /// ```
+    pub fn ban<U: Into<String>, R: Into<String>>(user_id: U, reason: R,
+        dmd: u8) -> OutboundData {
+        OutboundData {
+            inner: [
+                ("user_id", json!(user_id.into())),
+                ("reason", json!(reason.into())),
+                ("dmd", json!(dmd)),
+            ]
+            .into_iter()
+            .collect(),
         }
     }
 }
