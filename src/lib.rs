@@ -17,7 +17,7 @@ pub mod jira;
 pub mod discord;
 pub mod telegram;
 
-pub use serde::*;
-pub use serde_json::*;
+pub use serde;
+pub use serde_json;
 
 mod tests;
